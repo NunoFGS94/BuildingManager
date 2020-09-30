@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation.AspNetCore;
+using FluentValidation;
 
 namespace BuildingManager
 {
@@ -27,9 +29,14 @@ namespace BuildingManager
         {
             services.AddControllersWithViews();
 
+            //Add LocalDB
             services.AddDbContext<ActivityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ActivityContext")));
 
+            //Add FluentValidation
+            services.AddMvc()
+                .AddFluentValidation(f => 
+                    f.RegisterValidatorsFromAssemblyContaining<Startup>())
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

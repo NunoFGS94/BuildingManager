@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "VmC7WZD3HE8bk4mRZhdIonotld8jEaoJsTSwZTWhRTyxXtHMPMSmNpABr6YRWDm0kUWdFbr5SwYNYuRfI4DNaQ==",
+  "dgSpecHash": "/PaKnDA/wJlf0S5mzlYIjoR96eIOehKX5FgskfGUR97Qx4Z/h4me9OD5wYv6oRRG5W0ZY+ujrubbbTkUq31Zaw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nuno\\Documents\\Programacao\\Growin\\BuildingManager\\BuildingManager\\BuildingManager\\BuildingManager.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nuno\\.nuget\\packages\\fluentvalidation\\9.2.0\\fluentvalidation.9.2.0.nupkg.sha512",
+    "C:\\Users\\Nuno\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.2.0\\fluentvalidation.aspnetcore.9.2.0.nupkg.sha512",
+    "C:\\Users\\Nuno\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.2.0\\fluentvalidation.dependencyinjectionextensions.9.2.0.nupkg.sha512",
     "C:\\Users\\Nuno\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Nuno\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Nuno\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",

@@ -55,6 +55,7 @@ namespace BuildingManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Motive,ArrivalDate,ExitDate,ExpectedExitDate,exited")] BuildingActivity buildingActivity)
         {
+
             if (ModelState.IsValid)
             {
                 buildingActivity.ArrivalDate = DateTime.Now;

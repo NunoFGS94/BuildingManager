@@ -95,8 +95,6 @@ C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\Build
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.csproj.CoreCompileInputs.cache
-C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
@@ -174,3 +172,9 @@ C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\Build
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingActivities\Details.cshtml.g.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingActivities\Edit.cshtml.g.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingActivities\Index.cshtml.g.cs
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.csproj.CoreCompileInputs.cache
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.MvcApplicationPartsAssemblyInfo.cache
