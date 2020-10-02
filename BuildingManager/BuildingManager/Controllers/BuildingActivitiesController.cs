@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BuildingManager.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using MediatR;
+using BuildingManager.Queries;
 
 namespace BuildingManager.Controllers
 {
@@ -15,39 +16,45 @@ namespace BuildingManager.Controllers
     {
         private readonly IdentityContext _context;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public BuildingActivitiesController(IdentityContext context, IMapper mapper)
+        public BuildingActivitiesController(IdentityContext context, IMapper mapper, IMediator mediator)
         {
             _context = context;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         // GET: BuildingActivities
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var activityList = await _context.BuildingActivities.Where(activity => !activity.exited).ToListAsync();
 
-            List<BuildingActivityViewModel> buildingActivityList = new List<BuildingActivityViewModel>();
-            activityList.ForEach(act => buildingActivityList.Add(_mapper.Map<BuildingActivityViewModel>(act)));
+            var query = new GetCurrentBuildingActivitiesQuery();
+            var result = await _mediator.Send(query);
 
             ViewBag.InBuilding = false;
             var currentUser = this.User;
             if (currentUser.Identity.IsAuthenticated)
             {
-                ViewBag.InBuilding = buildingActivityList.Any(a => a.IdentificationNumber == currentUser.Identity.Name);
+                ViewBag.InBuilding = result.Any(a => a.IdentificationNumber == currentUser.Identity.Name);
             }
-            return View(buildingActivityList);
+
+            return View(result);
         }
 
         // GET: BuildingActivities/Create
         [Authorize]
         public async Task<IActionResult> Create()
         {
-            var activityList = await _context.BuildingActivities.Where(activity => !activity.exited && activity.IdentificationNumber == User.Identity.Name).ToListAsync();
 
-            var buildingActivity = activityList.FirstOrDefault();
-            if(buildingActivity != null)
+            if (!User.Identity.IsAuthenticated)
+            {
+                return NotFound();
+            }
+            var query = new IsUserInBuildingQuery(User.Identity?.Name);
+            var result = await _mediator.Send(query);
+            if(result)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -63,17 +70,12 @@ namespace BuildingManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Motive,ArrivalDate,ExitDate,ExpectedExitDate,exited")] BuildingActivityViewModel buildingActivityViewModel)
         {
-            var currentUser = this.User;
-            BuildingActivity buildingActivity = _mapper.Map<BuildingActivity>(buildingActivityViewModel);
-
             if (ModelState.IsValid)
             {
-                buildingActivity.IdentificationNumber = currentUser.Identity.Name;
-                buildingActivity.ArrivalDate = DateTime.Now;
-                buildingActivity.exited = false;
-                _context.Add(buildingActivity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var query = new CreateBuildingActivityQuery(buildingActivityViewModel, User.Identity.Name);
+                var result = await _mediator.Send(query);
+                if (result)
+                    return RedirectToAction(nameof(Index));
             }
             return View(buildingActivityViewModel);
         }
@@ -87,18 +89,9 @@ namespace BuildingManager.Controllers
                 return NotFound();
             }
 
-            var activityList = await _context.BuildingActivities.Where(activity => !activity.exited && activity.IdentificationNumber == User.Identity.Name).ToListAsync();
-
-            var buildingActivity = activityList.FirstOrDefault();
-            if (buildingActivity == null)
-            {
-                return NotFound();
-            }
-            buildingActivity.exited = true;
-            buildingActivity.ExitDate = DateTime.Now;
-            _context.Update(buildingActivity);
-            await _context.SaveChangesAsync();
-            
+            var query = new EndActivityQuery(User.Identity?.Name);
+            var result = await _mediator.Send(query);
+                        
             return RedirectToAction(nameof(Index));
         }
 

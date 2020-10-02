@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BuildingManager.Models;
+using BuildingManager.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +17,14 @@ namespace BuildingManager.Controllers
         private readonly IdentityContext _context;
         private readonly UserManager<BuildingUser> _userManager;
         private readonly SignInManager<BuildingUser> _signInManager;
+        private readonly IMediator _mediator;
 
-        public BuildingUserController(IdentityContext context, UserManager<BuildingUser> userManager, SignInManager<BuildingUser> signInManager)
+        public BuildingUserController(IdentityContext context, UserManager<BuildingUser> userManager, SignInManager<BuildingUser> signInManager, IMediator mediator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _mediator = mediator;
         }
 
 
@@ -48,26 +52,15 @@ namespace BuildingManager.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //var result = await _signInManager.PasswordSignInAsync(buildingUser.IdentificationNumber.ToString(), buildingUser.UserPassword, false, false);
-                    buildingUser.UserName = buildingUser.IdentificationNumber.ToString();
-                    var existingUser = await _userManager.FindByNameAsync(buildingUser.UserName);
-                    if(existingUser == null)
-                    {
-                        var result = await _userManager.CreateAsync(buildingUser, buildingUser.UserPassword);
-                        if (result.Succeeded)
-                        {
-                            var newUser = await _userManager.FindByNameAsync(buildingUser.UserName);
-                            await _userManager.UpdateSecurityStampAsync(newUser);
-                            await _signInManager.SignInAsync(newUser, false);
-                            return RedirectToAction(nameof(Index), "BuildingActivities");
-                        }
-                        ViewBag.Result = result.Errors.FirstOrDefault();
-                        return View(nameof(Create), buildingUser);
-                    }
-                    ViewBag.Result = "User already created";
-                    return View(nameof(Create), buildingUser);
-                }
-                return View(nameof(Create));
+
+                    var query = new CreateUserQuery(buildingUser);
+                    var result = await _mediator.Send(query);
+
+                    if(!result)
+                        return RedirectToAction(nameof(Index), "BuildingActivities");
+                }                  
+                
+                return View(nameof(Create), buildingUser);
             }
             catch(Exception ex)
             {
@@ -89,26 +82,21 @@ namespace BuildingManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(BuildingUser buildingUser)
         {
-            try
-            {
+            var query = new LoginUserQuery(buildingUser);
+            var result = await _mediator.Send(query);
 
-                var result = await _signInManager.PasswordSignInAsync(buildingUser.IdentificationNumber.ToString(), buildingUser.UserPassword, false, false);
-                if (!result.Succeeded)
-                {
-                    ViewBag.Result = "Please check your credentials";
-                    return View(nameof(Login), buildingUser);
-                }
+            if(result)
                 return RedirectToAction(nameof(Index), "BuildingActivities");
-            }
-            catch(Exception ex)
-            {
-                return View();
-            }
+
+            return View(nameof(Login), buildingUser);            
         }
         [Authorize]
         public async Task<ActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+
+            var query = new LogoutQuery();
+            var result = await _mediator.Send(query);
 
             return RedirectToAction(nameof(Index), "BuildingActivities");
         }

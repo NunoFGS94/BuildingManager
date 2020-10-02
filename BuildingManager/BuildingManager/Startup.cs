@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using AutoMapper;
+using MediatR;
+using BuildingManager.Repositories;
 
 namespace BuildingManager
 {
@@ -28,6 +30,8 @@ namespace BuildingManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             //Add Identity
             services.AddIdentity<BuildingUser, BuildingUserRole>(options =>
             {
@@ -40,9 +44,6 @@ namespace BuildingManager
                 .AddEntityFrameworkStores<IdentityContext>();
 
             ////Add LocalDB
-            //services.AddDbContext<ActivityContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("ActivityContext")));
-
             services.AddDbContext<IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ActivityContext")));
 
@@ -53,6 +54,13 @@ namespace BuildingManager
 
             //Add Automapper
             services.AddAutoMapper(typeof(Startup));
+
+            //AddRepositories
+            services.AddTransient<IBuildingActivityRepository, BuildingActivityRepository>();
+            services.AddTransient<IBuildingUserRepository, BuildingUserRepository>();
+
+            //AddMediatr
+            services.AddMediatR(typeof(Startup));
 
             services.AddControllersWithViews();
         }

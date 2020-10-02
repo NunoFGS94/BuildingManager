@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fQx+Ins6HJO2qo0CBzrJ46TeF5TerInvh9UYFJiwGEU52Efs68o/L9Mo7mSb/zObDs92cfE62VpNaJUZtvmjmg==",
+  "dgSpecHash": "cILBiggxg9f0pYwoaZqJyGhXpVAVAix7Xo0kOeNuDIO1N3d5dwooNYISn3ZDap4ivci9F11zcaJaVnIU4AGB/g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nuno\\Documents\\Programacao\\Growin\\BuildingManager\\BuildingManager\\BuildingManager\\BuildingManager.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\Nuno\\.nuget\\packages\\fluentvalidation\\9.2.0\\fluentvalidation.9.2.0.nupkg.sha512",
     "C:\\Users\\Nuno\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.2.0\\fluentvalidation.aspnetcore.9.2.0.nupkg.sha512",
     "C:\\Users\\Nuno\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.2.0\\fluentvalidation.dependencyinjectionextensions.9.2.0.nupkg.sha512",
+    "C:\\Users\\Nuno\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
+    "C:\\Users\\Nuno\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\8.1.0\\mediatr.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\Nuno\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
     "C:\\Users\\Nuno\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",
     "C:\\Users\\Nuno\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
