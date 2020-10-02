@@ -175,6 +175,15 @@ C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\Build
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\FluentValidation.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.csproj.CoreCompileInputs.cache
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingUser\Create.cshtml.g.cs
+C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingUser\Login.cshtml.g.cs

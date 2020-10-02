@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using FluentValidation;
+using AutoMapper;
 
 namespace BuildingManager
 {
@@ -27,16 +28,33 @@ namespace BuildingManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //Add Identity
+            services.AddIdentity<BuildingUser, BuildingUserRole>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+                .AddEntityFrameworkStores<IdentityContext>();
 
-            //Add LocalDB
-            services.AddDbContext<ActivityContext>(options =>
+            ////Add LocalDB
+            //services.AddDbContext<ActivityContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("ActivityContext")));
+
+            services.AddDbContext<IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ActivityContext")));
 
             //Add FluentValidation
             services.AddMvc()
                 .AddFluentValidation(f =>
                     f.RegisterValidatorsFromAssemblyContaining<Startup>());
+
+            //Add Automapper
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,13 +75,14 @@ namespace BuildingManager
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Activity}/{action=Index}/{id?}");
+                    pattern: "{controller=BuildingActivities}/{action=Index}/{id?}");
             });
         }
     }

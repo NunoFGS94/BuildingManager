@@ -6,150 +6,101 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BuildingManager.Models;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BuildingManager.Controllers
 {
     public class BuildingActivitiesController : Controller
     {
-        private readonly ActivityContext _context;
+        private readonly IdentityContext _context;
+        private readonly IMapper _mapper;
 
-        public BuildingActivitiesController(ActivityContext context)
+        public BuildingActivitiesController(IdentityContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: BuildingActivities
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Activity.Where(activity => !activity.exited).ToListAsync());
-        }
+            var activityList = await _context.BuildingActivities.Where(activity => !activity.exited).ToListAsync();
 
-        // GET: BuildingActivities/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
+            List<BuildingActivityViewModel> buildingActivityList = new List<BuildingActivityViewModel>();
+            activityList.ForEach(act => buildingActivityList.Add(_mapper.Map<BuildingActivityViewModel>(act)));
+
+            ViewBag.InBuilding = false;
+            var currentUser = this.User;
+            if (currentUser.Identity.IsAuthenticated)
             {
-                return NotFound();
+                ViewBag.InBuilding = buildingActivityList.Any(a => a.IdentificationNumber == currentUser.Identity.Name);
             }
-
-            var buildingActivity = await _context.Activity
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (buildingActivity == null)
-            {
-                return NotFound();
-            }
-
-            return View(buildingActivity);
+            return View(buildingActivityList);
         }
 
         // GET: BuildingActivities/Create
-        public IActionResult Create()
+        [Authorize]
+        public async Task<IActionResult> Create()
         {
+            var activityList = await _context.BuildingActivities.Where(activity => !activity.exited && activity.IdentificationNumber == User.Identity.Name).ToListAsync();
+
+            var buildingActivity = activityList.FirstOrDefault();
+            if(buildingActivity != null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
+
 
         // POST: BuildingActivities/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Motive,ArrivalDate,ExitDate,ExpectedExitDate,exited")] BuildingActivity buildingActivity)
+        public async Task<IActionResult> Create([Bind("Id,Motive,ArrivalDate,ExitDate,ExpectedExitDate,exited")] BuildingActivityViewModel buildingActivityViewModel)
         {
+            var currentUser = this.User;
+            BuildingActivity buildingActivity = _mapper.Map<BuildingActivity>(buildingActivityViewModel);
 
             if (ModelState.IsValid)
             {
+                buildingActivity.IdentificationNumber = currentUser.Identity.Name;
                 buildingActivity.ArrivalDate = DateTime.Now;
                 buildingActivity.exited = false;
                 _context.Add(buildingActivity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(buildingActivity);
+            return View(buildingActivityViewModel);
         }
 
-        // GET: BuildingActivities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // Exit
+        [Authorize]
+        public async Task<IActionResult> Exit()
         {
-            if (id == null)
+            if (!User.Identity.IsAuthenticated)
             {
                 return NotFound();
             }
 
-            var buildingActivity = await _context.Activity.FindAsync(id);
+            var activityList = await _context.BuildingActivities.Where(activity => !activity.exited && activity.IdentificationNumber == User.Identity.Name).ToListAsync();
+
+            var buildingActivity = activityList.FirstOrDefault();
             if (buildingActivity == null)
             {
                 return NotFound();
             }
-            return View(buildingActivity);
-        }
-
-        // POST: BuildingActivities/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Motive,ArrivalDate,ExitDate,ExpectedExitDate,exited")] BuildingActivity buildingActivity)
-        {
-            if (id != buildingActivity.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(buildingActivity);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BuildingActivityExists(buildingActivity.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(buildingActivity);
-        }
-
-        // GET: BuildingActivities/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var buildingActivity = await _context.Activity
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (buildingActivity == null)
-            {
-                return NotFound();
-            }
-
-            return View(buildingActivity);
-        }
-
-        // POST: BuildingActivities/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var buildingActivity = await _context.Activity.FindAsync(id);
-            _context.Activity.Remove(buildingActivity);
+            buildingActivity.exited = true;
+            buildingActivity.ExitDate = DateTime.Now;
+            _context.Update(buildingActivity);
             await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BuildingActivityExists(int id)
-        {
-            return _context.Activity.Any(e => e.Id == id);
-        }
     }
 }
