@@ -14,16 +14,10 @@ namespace BuildingManager.Controllers
 {
     public class BuildingUserController : Controller
     {
-        private readonly IdentityContext _context;
-        private readonly UserManager<BuildingUser> _userManager;
-        private readonly SignInManager<BuildingUser> _signInManager;
         private readonly IMediator _mediator;
 
-        public BuildingUserController(IdentityContext context, UserManager<BuildingUser> userManager, SignInManager<BuildingUser> signInManager, IMediator mediator)
+        public BuildingUserController(IMediator mediator)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _context = context;
             _mediator = mediator;
         }
 
@@ -46,7 +40,7 @@ namespace BuildingManager.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(BuildingUser buildingUser)
+        public async Task<ActionResult> Create(BuildingUserView buildingUser)
         {
             try
             {
@@ -56,7 +50,7 @@ namespace BuildingManager.Controllers
                     var query = new CreateUserQuery(buildingUser);
                     var result = await _mediator.Send(query);
 
-                    if(!result)
+                    if(result)
                         return RedirectToAction(nameof(Index), "BuildingActivities");
                 }                  
                 
@@ -80,7 +74,7 @@ namespace BuildingManager.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(BuildingUser buildingUser)
+        public async Task<ActionResult> Login(BuildingUserView buildingUser)
         {
             var query = new LoginUserQuery(buildingUser);
             var result = await _mediator.Send(query);
@@ -93,8 +87,6 @@ namespace BuildingManager.Controllers
         [Authorize]
         public async Task<ActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-
             var query = new LogoutQuery();
             var result = await _mediator.Send(query);
 

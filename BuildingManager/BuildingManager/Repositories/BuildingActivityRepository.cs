@@ -21,7 +21,7 @@ namespace BuildingManager.Repositories
             return _context.BuildingActivities.Where(activity => !activity.exited).ToList();
         }
 
-        public bool IsUserInBuilding(string userIdNr)
+        public async Task<bool> IsUserInBuilding(string userIdNr)
         {
             return _context.BuildingActivities.Any(activity => (!activity.exited && activity.IdentificationNumber == userIdNr));
         }
@@ -34,15 +34,16 @@ namespace BuildingManager.Repositories
             return res > 0;
         }
 
-        public bool EndActivity(string userIdNr)
+        public  async Task<bool> EndActivity(string userIdNr)
         {
             var currentActivity = _context.BuildingActivities.Where(activity => !activity.exited && activity.IdentificationNumber == userIdNr).FirstOrDefault();
             currentActivity.exited = true;
             currentActivity.ExitDate = DateTime.Now;
 
-            _context.Update(currentActivity);
+            var updatedActivity = _context.Update(currentActivity);
+            var res = await _context.SaveChangesAsync();
 
-            return true;
+            return res > 0;
         }
     }
 }

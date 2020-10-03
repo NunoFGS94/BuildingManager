@@ -2,6 +2,7 @@
 using BuildingManager.Models;
 using BuildingManager.Queries;
 using BuildingManager.Repositories;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BuildingManager.Handlers
 {
-    public class CreateBuildingActivityHandler
+    public class CreateBuildingActivityHandler : IRequestHandler<CreateBuildingActivityQuery, bool>
     {
 
         private readonly IBuildingActivityRepository _buildingActivityRepository;

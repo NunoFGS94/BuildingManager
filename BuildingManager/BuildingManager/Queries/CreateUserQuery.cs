@@ -9,9 +9,9 @@ namespace BuildingManager.Queries
 {
     public class CreateUserQuery : IRequest<bool>
     {
-        public BuildingUser buildingUser { get; }
+        public BuildingUserView buildingUser { get; }
 
-        public CreateUserQuery(BuildingUser buildingUser)
+        public CreateUserQuery(BuildingUserView buildingUser)
         {
             this.buildingUser = buildingUser;
         }

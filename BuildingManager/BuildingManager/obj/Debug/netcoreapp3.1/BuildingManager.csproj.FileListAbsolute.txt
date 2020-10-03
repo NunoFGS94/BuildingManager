@@ -10,8 +10,6 @@ C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\Build
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.TagHelpers.input.cache
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.TagHelpers.output.cache
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.RazorCoreGenerate.cache
-C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -72,7 +70,6 @@ C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\Build
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.pdb
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\BuildingManager.genruntimeconfig.cache
-C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\Activity\Index.cshtml.g.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
@@ -168,9 +165,6 @@ C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\Build
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingActivities\Create.cshtml.g.cs
-C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingActivities\Delete.cshtml.g.cs
-C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingActivities\Details.cshtml.g.cs
-C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingActivities\Edit.cshtml.g.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\obj\Debug\netcoreapp3.1\Razor\Views\BuildingActivities\Index.cshtml.g.cs
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\FluentValidation.dll
 C:\Users\Nuno\Documents\Programacao\Growin\BuildingManager\BuildingManager\BuildingManager\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll

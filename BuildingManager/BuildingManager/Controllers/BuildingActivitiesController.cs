@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BuildingManager.Models;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using MediatR;
 using BuildingManager.Queries;
@@ -14,14 +13,10 @@ namespace BuildingManager.Controllers
 {
     public class BuildingActivitiesController : Controller
     {
-        private readonly IdentityContext _context;
-        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public BuildingActivitiesController(IdentityContext context, IMapper mapper, IMediator mediator)
+        public BuildingActivitiesController(IMediator mediator)
         {
-            _context = context;
-            _mapper = mapper;
             _mediator = mediator;
         }
 

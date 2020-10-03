@@ -30,8 +30,6 @@ namespace BuildingManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
             //Add Identity
             services.AddIdentity<BuildingUser, BuildingUserRole>(options =>
             {
@@ -56,11 +54,13 @@ namespace BuildingManager
             services.AddAutoMapper(typeof(Startup));
 
             //AddRepositories
-            services.AddTransient<IBuildingActivityRepository, BuildingActivityRepository>();
-            services.AddTransient<IBuildingUserRepository, BuildingUserRepository>();
+            services.AddScoped<IBuildingActivityRepository, BuildingActivityRepository>();
+            services.AddScoped<IBuildingUserRepository, BuildingUserRepository>();
 
-            //AddMediatr
+            //AddMediatr,
+            //var assembly = AppDomain.CurrentDomain.Load("BuildingManager");
             services.AddMediatR(typeof(Startup));
+            //services.AddMediatR(assembly);
 
             services.AddControllersWithViews();
         }

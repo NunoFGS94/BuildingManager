@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BuildingManager.Handlers
 {
-    public class EndActivityHandler
+    public class EndActivityHandler : IRequestHandler<EndActivityQuery, bool>
     {
 
         private readonly IBuildingActivityRepository _buildingActivityRepository;
@@ -21,7 +21,7 @@ namespace BuildingManager.Handlers
 
         public async Task<bool> Handle(EndActivityQuery request, CancellationToken cancellationToken)
         {
-            return _buildingActivityRepository.EndActivity(request.UserIdNr);
+            return await _buildingActivityRepository.EndActivity(request.UserIdNr);
         }
     }
 }

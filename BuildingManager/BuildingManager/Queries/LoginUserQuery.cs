@@ -9,11 +9,11 @@ namespace BuildingManager.Queries
 {
     public class LoginUserQuery : IRequest<bool>
     {
-        public BuildingUser buildingUser { get; }
+        public BuildingUserView BuildingUser { get; }
 
-        public LoginUserQuery(BuildingUser buildingUser)
+        public LoginUserQuery(BuildingUserView buildingUser)
         {
-            this.buildingUser = buildingUser;
+            this.BuildingUser =  buildingUser;
         }
     }
 }
