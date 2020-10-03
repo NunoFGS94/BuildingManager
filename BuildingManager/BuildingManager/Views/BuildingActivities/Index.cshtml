@@ -1,0 +1,94 @@
+﻿@model IEnumerable<BuildingManager.Models.BuildingActivityViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Building Overview</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (ViewBag.InBuilding ?? false)
+    {
+        <p>
+            <a asp-action="Exit">Exit the building</a>
+        </p>
+    }
+    else
+    {
+        <p>
+            <a asp-action="Create">Enter the building</a>
+        </p>
+    }
+}
+@switch (Model.Count())
+{
+    case 0:
+        <p>
+            <h3> There are currently no users in the building.</h3>
+        </p>
+        break;
+    case 1:
+        <p>
+            <h3> There is @Model.Count() users in the building currently.</h3>
+        </p>
+        break;
+    default:
+        <p>
+            <h3> There are currently @Model.Count() users in the building.</h3>
+        </p>
+        break;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentificationNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Motive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedExitDate)
+            </th>
+            <th>Uver Overtime</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@(item.OverTime? "bg-danger" : "bg-transparent")">
+                <th>
+                    @Html.DisplayFor(modelItem => item.IdentificationNumber)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Motive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedExitDate)
+                </td>
+
+                @if (item.OverTime)
+                {
+                    <td>
+                        Yes
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        No
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
